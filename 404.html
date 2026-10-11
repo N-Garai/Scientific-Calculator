@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Redirecting…</title>
+    <script>
+      var parts = location.pathname.split("/").filter(Boolean);
+      var base = parts.length ? "/" + parts[0] + "/" : "/";
+      location.replace(base);
+    </script>
+    <meta http-equiv="refresh" content="0; url=./" />
+  </head>
+  <body>
+    <p><a href="./">Back to the calculator</a></p>
+  </body>
+</html>

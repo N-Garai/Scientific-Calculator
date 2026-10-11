@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content="A Casio fx-82MS–style scientific calculator that runs in the browser and on GitHub Pages." />
+    <meta name="theme-color" content="#1a1f2b" />
+    <title>fx-82MS Web — Scientific Calculator</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect rx='12' fill='%231c2433' width='64' height='64'/%3E%3Ctext x='32' y='42' text-anchor='middle' font-size='22' fill='%237dffb3' font-family='monospace'%3Efx%3C/text%3E%3C/svg%3E" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow" aria-hidden="true"></div>
+    <header class="topbar">
+      <div class="brand-lockup">
+        <span class="logo-mark">fx</span>
+        <div>
+          <h1>Scientific Calculator</h1>
+          <p>Casio fx-82MS style · S-V.P.A.M. two-line display</p>
+        </div>
+      </div>
+      <div class="top-actions">
+        <button type="button" id="help-toggle" class="ghost-btn" aria-label="Open quick guide">Guide</button>
+        <button type="button" id="theme-toggle" class="ghost-btn theme-btn" aria-label="Switch theme">
+          <span class="icon-sun" aria-hidden="true">☀</span>
+          <span class="icon-moon" aria-hidden="true">☾</span>
+          <span class="theme-text">Theme</span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <noscript><p class="noscript-note">This calculator needs JavaScript enabled.</p></noscript>
+      <section class="calc" aria-label="fx-82MS calculator">
+        <div class="calc-bezel">
+          <div class="calc-head">
+            <span class="casio-word">SCIENTIFIC</span>
+            <span class="model">fx-82MS WEB</span>
+            <span class="solar" title="Decorative solar cell"></span>
+          </div>
+
+          <div class="lcd" role="status" aria-live="polite">
+            <div id="lcd-indicators" class="lcd-indicators"></div>
+            <div id="lcd-expr" class="lcd-expr"></div>
+            <div id="lcd-result" class="lcd-result">0</div>
+          </div>
+
+          <div id="mode-panel" class="mode-panel" aria-label="Setup"></div>
+
+          <div id="keypad" class="keypad">
+            <div class="row row-top">
+              <button type="button" class="key shift" data-key="SHIFT"><small>SHIFT</small></button>
+              <button type="button" class="key alpha" data-key="ALPHA"><small>ALPHA</small></button>
+              <div class="replay" aria-label="Replay and cursor">
+                <button type="button" data-key="up" title="Replay previous">▲</button>
+                <button type="button" data-key="left" title="Cursor left">◀</button>
+                <button type="button" data-key="right" title="Cursor right">▶</button>
+                <button type="button" data-key="down" title="Replay next">▼</button>
+              </div>
+              <button type="button" class="key navy" data-key="MODE"><i>CLR</i><span>MODE</span></button>
+              <button type="button" class="key navy" data-key="ON"><i>OFF</i><span>ON</span></button>
+            </div>
+
+            <div class="row cols-5">
+              <button type="button" class="key" data-key="inv"><i>x!</i><span>x<sup>−1</sup></span></button>
+              <button type="button" class="key" data-key="nCr"><i>nPr</i><span>nCr</span></button>
+              <button type="button" class="key" data-key="pol"><i>Rec(</i><span>Pol(</span></button>
+              <button type="button" class="key" data-key="cube"><i>³√</i><span>x³</span></button>
+              <button type="button" class="key" data-key="frac"><i>d/c</i><span>aᵇ/c</span></button>
+            </div>
+
+            <div class="row cols-5">
+              <button type="button" class="key" data-key="sqrt"><i>ˣ√</i><span>√</span></button>
+              <button type="button" class="key" data-key="sq"><i>D</i><span>x²</span></button>
+              <button type="button" class="key" data-key="^"><i>E</i><span>^</span></button>
+              <button type="button" class="key" data-key="log"><i>10ˣ</i><span>log</span></button>
+              <button type="button" class="key" data-key="ln"><i>eˣ</i><span>ln</span></button>
+            </div>
+
+            <div class="row cols-6">
+              <button type="button" class="key" data-key="neg"><i>A</i><span>(−)</span></button>
+              <button type="button" class="key" data-key="dms"><i>B</i><span>° ′ ″</span></button>
+              <button type="button" class="key hyp" data-key="HYP"><i>C</i><span>hyp</span></button>
+              <button type="button" class="key" data-key="sin"><i>sin⁻¹</i><span>sin</span></button>
+              <button type="button" class="key" data-key="cos"><i>cos⁻¹</i><span>cos</span></button>
+              <button type="button" class="key" data-key="tan"><i>tan⁻¹</i><span>tan</span></button>
+            </div>
+
+            <div class="row cols-6">
+              <button type="button" class="key" data-key="RCL"><i>STO</i><span>RCL</span></button>
+              <button type="button" class="key" data-key="ENG"><i>←</i><span>ENG</span></button>
+              <button type="button" class="key" data-key="("><i>%</i><span>(</span></button>
+              <button type="button" class="key" data-key=")"><span>)</span></button>
+              <button type="button" class="key" data-key=","><i>M−</i><span>,</span></button>
+              <button type="button" class="key mplus" data-key="M+"><i>M+</i><span id="mplus-label">M+</span></button>
+            </div>
+
+            <div class="row cols-5">
+              <button type="button" class="key num" data-key="7"><span>7</span></button>
+              <button type="button" class="key num" data-key="8"><span>8</span></button>
+              <button type="button" class="key num" data-key="9"><span>9</span></button>
+              <button type="button" class="key danger" data-key="DEL"><i>INS</i><span>DEL</span></button>
+              <button type="button" class="key danger" data-key="AC"><i>OFF</i><span>AC</span></button>
+            </div>
+
+            <div class="row cols-5">
+              <button type="button" class="key num" data-key="4"><span>4</span></button>
+              <button type="button" class="key num" data-key="5"><span>5</span></button>
+              <button type="button" class="key num" data-key="6"><span>6</span></button>
+              <button type="button" class="key op" data-key="*"><span>×</span></button>
+              <button type="button" class="key op" data-key="/"><span>÷</span></button>
+            </div>
+
+            <div class="row cols-5">
+              <button type="button" class="key num" data-key="1"><span>1</span></button>
+              <button type="button" class="key num" data-key="2"><span>2</span></button>
+              <button type="button" class="key num" data-key="3"><span>3</span></button>
+              <button type="button" class="key op" data-key="+"><i>M+</i><span>+</span></button>
+              <button type="button" class="key op" data-key="-"><span>−</span></button>
+            </div>
+
+            <div class="row cols-5">
+              <button type="button" class="key num" data-key="0"><i>Rnd</i><span>0</span></button>
+              <button type="button" class="key num" data-key="."><i>Ran#</i><span>.</span></button>
+              <button type="button" class="key num" data-key="EXP"><i>π</i><span>EXP</span></button>
+              <button type="button" class="key ans" data-key="Ans"><i>|x|</i><span>Ans</span></button>
+              <button type="button" class="key eq" data-key="="><span>=</span></button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <aside id="help-panel" class="help-panel" aria-label="Quick guide">
+      <div class="help-card">
+        <div class="help-head">
+          <h2>How to use it</h2>
+          <button type="button" id="help-close" class="ghost-btn">Close</button>
+        </div>
+        <ul>
+          <li>Type expressions the same way as an fx-82MS. The formula stays on the top line; press <strong>=</strong> for the result.</li>
+          <li><strong>SHIFT</strong> unlocks yellow labels (sin⁻¹, π, x!, 10ˣ, eˣ, nPr, Rec, %…).</li>
+          <li><strong>ALPHA</strong> recalls variables A–F, M, X, Y printed in red. <strong>SHIFT RCL</strong> is STO.</li>
+          <li><strong>MODE</strong> cycles COMP / SD, then Deg·Rad·Gra, then Fix·Sci·Norm. Or tap the on-screen setup chips.</li>
+          <li>In SD mode, <strong>M+</strong> becomes <strong>DT</strong> (store a data point). SHIFT 1–6 recall Σx², Σx, n, x̄, σn, σn−1.</li>
+          <li>Keyboard: digits, + − * /, Enter, Backspace, Esc, arrows for replay/cursor, P for π.</li>
+        </ul>
+      </div>
+    </aside>
+
+    <footer>
+      <p>Two-line S-V.P.A.M. logic · degree / radian / gradian · memory · stats · GitHub Pages ready</p>
+    </footer>
+
+    <script src="js/engine.js"></script>
+    <script src="js/calculator.js"></script>
+  </body>
+</html>
