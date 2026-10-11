@@ -3,6 +3,8 @@
 A Casio **fx-82MS–style** scientific calculator that runs entirely in the browser.
 Static HTML/CSS/JS only — no build step, no backend — so it deploys cleanly to **GitHub Pages**.
 
+**Live demo: https://n-garai.github.io/Scientific-Calculator/**
+
 ## Features
 
 - **fx-82MS layout**: SHIFT (yellow) / ALPHA (red) keys, replay cursor pad, `MODE`, `ON/AC`, `DEL`
